@@ -1,0 +1,145 @@
+- var link = 'js-tooltips'
+- var title = '用 JavaScript 做一個 Tooltips 功能'
+- var description = '用 JavaScript 做一個 Tooltips 功能'
+
+<!DOCTYPE html>
+html(lang="zh-Hant")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title #{title} - August - Let's Write
+
+    link(rel="canonical", href=`https://www.letswrite.tw/${link}/`)
+    meta(property="og:url", content=`https://letswritetw.github.io/letswrite-${link}/`)
+
+    meta(property="fb:app_id", content="911000986339138")
+    meta(property="og:type", content="website")
+
+    meta(property="og:site_name", content="Let's Write")
+    meta(property="og:title", content=`${title} - Augustus - Let's Write`)
+    meta(itemprop="name", content=`${title} - Augustus - Let's Write`)
+
+    meta(name="description", content=description)
+    meta(property="og:description", content=description)
+    meta(itemprop="description", content=description)
+
+    meta(itemprop="image", content=`https://letswritetw.github.io/letswrite-${link}/fb.jpg`)
+    meta(property="og:image", content=`https://letswritetw.github.io/letswrite-${link}/fb.jpg`)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="630")
+    meta(property="og:image:alt", content=title)
+
+    link(rel="shortcut icon", href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png")
+
+    //- css
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css", media="screen")
+    link(rel="stylesheet", href="https://highlightjs.org/static/demo/styles/atom-one-dark.css")
+    link(rel="stylesheet", href="dist/style.min.css", media="screen")
+
+    // Google Tag Manager
+    script.
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+  body
+
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT", height="0", width="0", style="display:none;visibility:hidden")
+    
+    #app.container
+      .text-center
+        h1=title
+        //- p 筆記文：
+          a(href="https://www.letswrite.tw/js-tooltip/") Let's Write
+      
+      hr
+
+      // install
+      h2 引用
+      p 下載 JavaScript 的檔案：Let's Write Tooltips
+      p 引用方式：
+      pre
+        code.language-javascript.
+          import { letswriteTooltips } from 'path/letswrite-tooltip.mjs';
+
+      hr
+
+      // demo 1
+      h2 Demo 1：基本使用，都吃預設值
+      
+      pre
+        code.language-html.
+          &lt;button type="button"
+            class="letswrite-tooltips"
+            data-content="Tooltips 內容">&lt;/button>
+          <br/>
+          &lt;script>
+            const demo1 = new letswriteTooltips();
+          &lt;/script>
+
+      button(type="button", class="letswrite-tooltips", data-content="Demo1：預設樣式") hover 可看到
+
+      hr
+
+      // demo 2
+      h2 Demo 2：加入客製 class name
+
+      style.
+        .letswrite-tooltips-custom {
+          padding: .25rem;
+          background-color: white;
+          border: 1px solid #a1a1a1;
+          border-radius: .25rem;
+          color: #a1a1a1;
+        }
+      pre
+        code.language-html.
+          &lt;button type="button"
+            class="letswrite-tooltips-demo2"
+            data-content="Tooltips 內容">&lt;/button>
+          &lt;style>
+            .letswrite-tooltips-custom {
+              padding: .25rem;
+              background-color: white;
+              border: 1px solid #a1a1a1;
+              border-radius: .25rem;
+              color: #a1a1a1;
+            }
+          &lt/style>
+          &lt;script>
+            const demo2 = new letswriteTooltips({
+              el: '.letswrite-tooltips-demo2',
+              customClass: 'letswrite-tooltips-custom'
+            });
+          &lt;/script>
+      button(type="button", class="letswrite-tooltips-demo2", data-content="Demo2：樣式不一樣") hover 可看到
+
+      hr
+
+      // demo 3
+      h2 Demo 3：點擊後執行 function
+      pre
+        code.language-html.
+          &lt;button type="button"
+            class="letswrite-tooltips-demo3"
+            data-content="Tooltips 內容">&lt;/button>
+          &lt;script>
+            const demo3 = new letswriteTooltips({
+              el: '.letswrite-tooltips-demo3',
+              callback: (e) => {
+                e.preventDefault();
+                alert('callback')
+              }
+            });
+          &lt;/script>
+
+      button(type="button", class="letswrite-tooltips-demo3", data-content="Demo 3：點擊跳 alert") hover 可看到
+
+      hr
+      
+    script(src="dist/main.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js")
